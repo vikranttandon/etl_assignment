@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: etl_user
+      POSTGRES_PASSWORD: etl_password
+      POSTGRES_DB: etl_db
+    ports:
+      - "5432:5432"
+    networks:
+      - spark-network
+
+  spark-etl:
+    build: .
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/app
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: etl_db
+      POSTGRES_USER: etl_user
+      POSTGRES_PASSWORD: etl_password
+    networks:
+      - spark-network
+
+networks:
+  spark-network:
+    driver: bridge
