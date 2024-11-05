@@ -54,10 +54,10 @@ def test_data(spark, df, jurl, table_name, config):
     # count test, this also tests the database interaction was successful
     test1 = (df.count() == stored.count())
     
-    # all salaries must be postive, otherwise no SalaryBucket would be derived
+    # all salaries must be postive, otherwise the derived SalaryBucket would be deviating
     test2 = (stored.filter(col('Salary')<0).count() == 0)
 
-    # age must not be null
+    # age must withing a suitable range
     test3 = (stored.filter((col('Age') <= 0) | (col('Age') > 80)).count() == 0)
     
     if test1:
