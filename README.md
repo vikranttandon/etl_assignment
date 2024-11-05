@@ -1,6 +1,6 @@
 # Etl_assignment
 
-i## Objective
+## Objective
 
 In this assignment, you will build a streamlined **Extract, Transform, and Load (ETL)** pipeline that demonstrates **Test-Driven Development (TDD)** by performing the following tasks:
 
