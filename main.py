@@ -31,7 +31,7 @@ def data_transformation(df):
     df = (df.withColumn('FullName', concat_ws(" ", col('FirstName'), col('LastName')))
             .withColumn("SalaryBucket", 
                     when(col('Salary') < 50000, lit('A')).when((col('Salary') >= 50000) & (col('Salary') <= 100000), lit('B')).otherwise(lit('C')))
-            .drop('FirstName', 'LastName', 'BirthDate'))
+            .drop('FirstName', 'LastName'))
     
     return df
 
